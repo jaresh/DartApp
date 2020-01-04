@@ -11,7 +11,7 @@ dev:
 	pip3 install pygame
 
 lint:
-	find . -type f -name "*.py" | xargs pylint   
+	find . -type f -name "*.py" | xargs pylint --rcfile=pylint.rc
 
 test:
 	echo 'Run tests'
