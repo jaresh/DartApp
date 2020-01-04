@@ -8,7 +8,7 @@ dep-deb:
 dep-py:
 	# Whl install
 	python3 -m pip install --upgrade pip
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
 dev: dep-deb dep-py
 	echo 'Installed!'
