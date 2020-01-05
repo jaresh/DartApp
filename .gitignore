@@ -130,3 +130,7 @@ dmypy.json
 
 # vim .swp files
 *.swp
+
+# do not add files from data folder
+data/*
+!data/.gitkeep 

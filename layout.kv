@@ -1,22 +1,67 @@
 <MenuScreen>:
-    BoxLayout:
-        Button:
-            text: 'New Match'
-            on_press: root.manager.current = 'match'
-        Button:
-            text: 'Player'
-            on_press: root.manager.current = 'player'
-        Button:
-            text: 'Quit'
-            on_press: root.stop()
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        BoxLayout:
+            orientation: 'vertical'
+            width: 300
+            spacing: 20
+            size_hint: None, None
+            Button:
+                text: 'New Match'
+                on_press: root.manager.current = 'match'
+            Button:
+                text: 'Player'
+                on_press: root.manager.current = 'player'
+            Button:
+                text: 'Quit'
+                on_press: root.stop()
 
 <PlayerScreen>:
-    BoxLayout:
-        Button:
-            text: 'My player button'
-        Button:
-            text: 'Back to menu'
-            on_press: root.manager.current = 'menu'
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        padding: 50
+        BoxLayout:
+            orientation: 'vertical'
+            width: root.width * 0.8
+            spacing: 50
+            size_hint: None, None
+            BoxLayout:
+                orientation: 'horizontal'
+                width: root.width * 0.8
+                spacing: 20
+                size_hint: None, None
+                TextInput:
+                    text: 'Player name'
+                    id: player_name
+                    multiline: False
+                    width: root.width * 0.65
+                    height: 30
+                    size_hint: None, None
+                Button:
+                    text: 'Add player'
+                    on_press:
+                        root.add_player(root.ids.player_name.text)
+                        root.player_list_update()
+                    height: 30
+                    size_hint: None, None
+            GridLayout:
+                cols: 3
+                id: player_list
+                orintation: 'horizontal'
+                width: root.width * 0.8
+                height: 40
+                row_default_height:40
+                spacing: 20
+                size_hint: None, None
+                on_parent:
+                    root.player_list_update()
+    Button:
+        size_hint: None, None
+        height: 50
+        text: 'Back to menu'
+        on_press: root.manager.current = 'menu'
 
 <MatchScreen>:
     BoxLayout:
