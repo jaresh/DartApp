@@ -1,0 +1,27 @@
+<MenuScreen>:
+    BoxLayout:
+        Button:
+            text: 'New Match'
+            on_press: root.manager.current = 'match'
+        Button:
+            text: 'Player'
+            on_press: root.manager.current = 'player'
+        Button:
+            text: 'Quit'
+            on_press: root.stop()
+
+<PlayerScreen>:
+    BoxLayout:
+        Button:
+            text: 'My player button'
+        Button:
+            text: 'Back to menu'
+            on_press: root.manager.current = 'menu'
+
+<MatchScreen>:
+    BoxLayout:
+        Button:
+            text: 'Match button'
+        Button:
+            text: 'Back to menu'
+            on_press: root.manager.current = 'menu'
