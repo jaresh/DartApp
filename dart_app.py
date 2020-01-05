@@ -1,21 +1,23 @@
 from kivy.app import App
-from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput
-from kivy.uix.boxlayout import BoxLayout
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager
+
+from menu_screen import MenuScreen
+from player_screen import PlayerScreen
+from match_screen import MatchScreen
+
+Builder.load_file('layout.kv')
 
 class DartApp(App):
     def __init__(self, **kwargs):
         super(DartApp, self).__init__(**kwargs)
-        self.box = BoxLayout(orientation='horizontal', spacing=20)
-        self.txt = TextInput(hint_text='Write here', size_hint=(.5, .1))
-        self.btn = Button(text='Clear All', on_press=self.clear_text, size_hint=(.1, .1))
+        self.screen_m = ScreenManager()
+        self.screen_m.add_widget(MenuScreen(name='menu'))
+        self.screen_m.add_widget(PlayerScreen(name='player'))
+        self.screen_m.add_widget(MatchScreen(name='match'))
 
     def build(self):
-        self.box.add_widget(self.txt)
-        self.box.add_widget(self.btn)
-        return self.box
+        return self.screen_m
 
-    def clear_text(self, instance):  # pylint: disable=unused-argument
-        self.txt.text = ''
 
 DartApp().run()
